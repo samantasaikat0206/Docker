@@ -1,0 +1,159 @@
+**Docker is used for shipping and deploying application
+
+
+### Why need Docker:-
+    1. Environment reproducibility : Everyone gets the exact same setup.
+    2. Dependency Management: No Python hell, conda weirdness, or OS-specific issues.
+    3. Portability: Run your containers on any machine with Docker(dev laptop, server, cloud Instance)
+    4. Version Control for Environments: Dockefiles are text = versionable in git.
+
+### Servers and Virtualization Overview:-
+    ** Network Interface Cards:-
+        Connect the computing device to the outside world. Can be wireless(WiFi) or wired (uses Ethernet/LAN cables)
+    ** Graphic cards or GCPUs are Used to accelerate video operations (gaming, rendering) on the compute device. Can be built in or a cards.
+    ** Server:-
+        A Server is basically a powerful computing device with:
+            * A good size memory (RAM)
+            * one or more CPU(s)
+            * One or more disk drives to persistently store the OS, applications, and data.
+            * One or more Network Interface.
+            * One or more GCPUs
+            * An operating system(Linux, Windows, MacOS)
+            we can install one or more applications on a server.
+
+        # Scaling Servers:-
+        As the number of users increases,
+            * the server performance may degrade.
+            * We need to increases(Scale) the number of Servers
+
+        # Server Hosting in Datacenters
+        a data center is air conditioned, secure, monitored space.
+        
+        # Server Resource Optimization & Multiple Apps on a Server:-
+         To optimize resource usage, multiple applications could be run on the same physical server
+         * Each application may require its own runtime Version, dependencies, database etc.
+         # Drawbacks:-
+            * Resource contention and inefficiency
+            * Dependency conflicts.
+            * Lack of strong isolation
+            * Scaling is painful.
+            * deployment & maintenance hell
+    
+
+    ** Introduction to Virtualization:-
+        Virtualization introduced isolation, flexibility, Portability, and Scalability.
+        Virtualization enables us to run more than one virtual machine, multiple operating system, and applicatios on a single physical server
+            * Virtual machines are isolated
+            * we can take a snapshot of the VM (a backup)
+
+        # Virtual machine(VM) Resourcs:
+            the hypervisor shares the physical server resoures among the virtual machine(VMs) 
+            Each VM gets its:-
+                * virtual Network Interface Card(vNIC)
+                * Virtual disk(vDisk)
+                * virtual RAM(vRAM)
+                * virtual CPUs(vCPU)
+
+        # Popular Hypervisors Providers:-
+         * VMware vSphere
+         * Xen
+         * Microsoft Hyper-V
+         * Linux KVM
+         * Oracle VM VirtualBox
+         * VMware Workstation
+
+        # Virtual Machines(VMs) - Issues:-
+          * Heavyweight (slow to start)
+          * Limited Scalability
+          * Poor Dev/ Test/ Prod parity
+          * Redundant OS overhead
+          * inefficient Image Management
+          * Low Portability
+### From Virtualization to containers - The Background:-
+    # Linux Software Processes Overview:-
+        A process is, a running instance of program that has its own memory, CPU context, and system resources, managed by the Linux Kernal (OS Kernal)
+        when you run a program (like bash, nginx, or Python), the Linux Kernal:-
+            1. Loads the program's code into memory
+            2. Allocates it a unique Process ID (PID)
+            3. Create a process to execute the code
+    
+    # Containers Overview:-
+         A container is a lightweight, isolated process running on a shared OS Kernal, packaged with everything it nedds to run, including code, libraries, 
+         Environment variables, runtime, and configuration files.
+         we can run applications inside containers.
+    
+    # Containers-Features:-
+        * Does not require a seperate OS
+        * Isolated, self-contained environments
+        * Faster to create and tear down
+        * Repeatable
+        * Portable
+        * Easily scalable
+    # Containerization Overview:-
+        To build, ship and run containers, we need a container runtime engine be installed on the host's OS
+            * The engine shares the Host's OS Kernal among the containers
+            * Containerization applications are "isolated"
+            * Docker is the most poopular container engine
+                * It comes in Community Edition(CE) which is free and a paid Enterprise Edition(EE)
+    
+    # Docker Containers-From a Dockefiles to an application:-
+        Strating witha Dockerfile, we can build a containerimage that can be used to consistently run an application across different environments.
+
+    # Virtual Machines(VMs) Vs Containers(Cont.):-
+        Virtual Machines(VMs):                              Containers:
+        * Heavyweight(slow to start)                        * lightweight(start in miliseconds)
+        * Limited Scalability                               * Faster Scaling
+        * Low Portability                                   * Excellent Portability
+        * Redundant OS overhead                             * Containers share the Host's OS Kernal
+        * inefficient Image Management                      * Efficient Image Management
+        * Poor Dev/ Test/ Product parity                    * Containers are Excellent for CI/Card
+    
+    # Popular container Engines & runtimes:-
+        * Docker
+        * Linux container - LXC (System Level Containerization framework)
+        * containerd - geared towards Kubernetes deployments
+        * CRI-O - geared towards Kubernetes deployments
+    
+### Docker Architechture:-
+
+    # Docker - Overview:-
+      Docker is a Software platform that simplifies the process of bilding, running, managing, and distributing applications using Containers.
+      * Developed by Docker Inc.
+      * Docker is open source
+      * Docker Virtualizes the host OS (containers use the same Kernal)
+      * application run in container as isolated environments
+    
+    # Docker Architechture - Docker Client:-
+        * It enable developers/users to interact with Docker
+        * When you use docker commands, the docker Client sends these commands to the Docker  daemon(dockerd)
+        ** commands:-
+            docker pull
+            docker run 
+            docker build
+    # Docker Architechture -Docker Host:-
+        The server or virtual machine on which Docker engine is installed.
+        * The Docker Daemon(dockerd) is the Heart of Docker
+    # Docker Architechture - Docker Images:-
+        Images are read-only binary templates used to build containers
+        * They contain the application code, libraries, and dependencies required to run an application.
+    # Docker Architechture - Docker Daemon:-
+        * It listens to Docker API requests(from the Docker Client) and manages containers, images, Networks and volumes.
+        * It buils container images as requested by the Client
+        * It Interfaces with docker registries to pull or publish image as requested by the Client
+        * It manages the lifecycle of the containers (start, stop, remove)
+    # Docker Architechture - Docker Containers:-
+      Containers are encapsulated environments in which you run applications
+      * A container is an instance of a Docker image
+      * A container runs as a process in an isolated environments
+      * It packages the application and its depenencies into a single executable unit.
+    # Docker Architechture - Docker registries:-
+        * A Docker registry stores Docker images
+        * Dockr Hub is the publc registry that anyone can use 
+        * When needed, the required images can be pulled from the configured registry
+        * Users can push their created images to the configured registry
+
+
+
+
+         
+
